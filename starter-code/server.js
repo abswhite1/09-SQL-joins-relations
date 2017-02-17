@@ -9,7 +9,8 @@ const app = express();
 // DONE: Don't forget to set your own conString if required by your system
 const conString = 'postgres://localhost:5432';
 // DONE: Using a sentence or two, describe what is happening in Line 12.
-// const is a read-only variable. In this case, it is defining the variable client ad a new method "Client" on postgres with an input of the variable client from line 10. As a result, conString is connected to the variable client as a method of Client on postgres.
+// Creating new variable called client which is a const, read-only (immutable) variable (immutable). Into it we are assignming an object that is a new instance of the library 'pg' that will facilitate our communications and data transder between the server (controller) and database(model). The conString specifies the port over which this exchange between the controller and the model will take place. -- class discussion
+// My previous answer-- In this case, client is defining the variable client and a new object "Client" on postgres with an input of the variable client from line 10. As a result, conString is connected to the variable client as a method of Client on postgres. new pg.Client(conString) is the interface to the model-- creating an instance of the controller's interaction with the model.
 const client = new pg.Client(conString);
 client.connect();
 
