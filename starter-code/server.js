@@ -85,7 +85,7 @@ app.post('/articles', function(request, response) {
   function queryTwo() {
     client.query(
       // DONE: What is the purpose of the $1 in the following line of code?
-      // $1 refers to the author from the request. So this is SELECTing the author id from the authors table where the author is the same as the author from the request.
+      // $1 refers to the author from the request from line 90 (where request is acting as an article object, body is a method on request to access the author). Since this is the first value, it can be accessed as $1. So $1 this is SELECTing the author id from the authors table where the author is the same as the author from the request.
       `SELECT author_id FROM authors WHERE author=$1`, // DONE: Write a SQL query to retrieve the author_id from the authors table for the new article
       [request.body.author], // DONE: Add the author name as data for the SQL query
       function(err, result) {
@@ -164,8 +164,8 @@ app.delete('/articles/:id', function(request, response) {
     // DONE: What number in the full-stack diagram best matches what is happening in lines 165? #3 is occuring as the server is querying to database.
   client.query(
     `DELETE FROM articles WHERE article_id=$1;`,
-    // TODO: What does the value in 'request.params.id' come from? If unsure, look in the Express docs.
-    // Put your response here...
+    // DONE: What does the value in 'request.params.id' come from? If unsure, look in the Express docs.
+    // Request acts as an Article object within the context of app.delete. Params is an express method on the object, referencing the id of the Article object. This value is references as $1 above as the first value available.
     [request.params.id]
   );
   // DONE: What number in the full-stack diagram best matches what is happening in line 171? #5 is occuring, as the server is providing a response from the database to the user.
